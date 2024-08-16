@@ -1,14 +1,10 @@
 ## Create Email Signatures for Free
 
----
-
 ![Email Signature in Gmail](./public/assets/mockup.png)
 
 [EmailSignature](emailsignature.in) is a free tool to create HTML signatures for Gmail. HTML email signatures allow you to create professional signatures for free without requiring any know-how of code.
 
 Visit [emailsignature.in](https://emailsignature.in) to start creating your email signature.
-
----
 
 ## How to Use
 
@@ -30,6 +26,6 @@ Visit [emailsignature.in](https://emailsignature.in) to start creating your emai
 5. **Paste in Gmail**:
    - Follow the tutorial link provided to learn how to paste your signature into Gmail settings.
 
----
+##
 
 Thank you for using the Email Signature Generator!
