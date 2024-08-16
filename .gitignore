@@ -1,0 +1,42 @@
+# Node modules
+node_modules/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Dependency directories
+bower_components/
+
+# Build output
+build/
+dist/
+
+# Static files and cache
+.DS_Store
+.cache/
+
+# Testing
+coverage/
+
+# System files
+Thumbs.db
+*.swp
+
+# Local environment
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Ignore Mac system files
+.DS_Store
+
+# React specific
+.sass-cache/
+*.env
+yarn-error.log
+
+# Workspace settings
+.vscode/
