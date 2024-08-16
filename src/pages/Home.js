@@ -5,7 +5,7 @@ function Home() {
   return (
     <div className="flex h-[calc(100vh-64px)] min-h-screen">
       <div className="w-1/2 flex flex-col justify-center items-start px-16 bg-white" style={{ gap: '42px' }}>
-        <img src="/assets/Logo.svg" alt="Email Signature Logo" className="w-auto h-[80px]" />
+        <img src="/assets/logo.svg" alt="Email Signature Logo" className="w-auto h-[80px]" />
         <p className="text-[32px] leading-[42px] font-semibold text-[#101010] w-[480px]">
           Create professional email signatures for Gmail.
           <br />

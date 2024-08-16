@@ -18,7 +18,7 @@
       "start": "react-scripts start",
       "build": "react-scripts build",
       "predeploy": "npm run build",
-      "deploy": "surge ./build"
+      "deploy": "surge ./build email-signature-generator.surge.sh"
     },
     "eslintConfig": {
       "extends": [
