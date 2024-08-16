@@ -2,7 +2,7 @@
 
 ---
 
-![Email Signature in Gmail](./public/assets/hero.png)
+![Email Signature in Gmail](./public/assets/mockup.png)
 
 [EmailSignature](emailsignature.in) is a free tool to create HTML signatures for Gmail. HTML email signatures allow you to create professional signatures for free without requiring any know-how of code.
 
