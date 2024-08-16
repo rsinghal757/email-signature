@@ -58,7 +58,7 @@ function EditorPage() {
             </div>
             <div className="flex flex-col mt-6 justify-center gap-2">
               <CopyButton text={signatureHtml} className="w-full h-full" />
-              <button
+              {/* <button
                 onClick={() =>
                   window.open('https://www.youtube.com/watch?v=YOUR_VIDEO_ID', '_blank', 'noopener,noreferrer')
                 }
@@ -66,7 +66,8 @@ function EditorPage() {
               >
                 <img src="/assets/octicon_play-16.svg" alt="Paste Signature Tutorial" className="w-auto h-[24px]" />
                 How to Paste Signature in Gmail
-              </button>
+              </button> */}
+              <p>To paste the signature in Gmail, go to <b>Settings → See all Settings → Signature</b>. Click on 'Create New' and then press Cmd/Ctrl + V in the editor. </p>
             </div>
           </div>
         </div>
