@@ -30,11 +30,11 @@ function TemplateSelector({ onSelect }) {
   const [templates, setTemplates] = useState({});
 
   useEffect(() => {
-    const templateCount = 10;
+    const templateCount = 12;
     const templatePromises = [];
 
     for (let i = 1; i <= templateCount; i++) {
-      templatePromises.push(fetch(`/templates/template_${i}.html`).then(res => res.text()));
+      templatePromises.push(fetch(`/templates/template_${i}.txt`).then(res => res.text()));
     }
 
     Promise.all(templatePromises)
@@ -44,7 +44,7 @@ function TemplateSelector({ onSelect }) {
           newTemplates[`template_${index + 1}`] = {
             id: `template_${index + 1}`,
             htmlContent,
-            fileUrl: `/templates/template_${index + 1}.html`
+            fileUrl: `/templates/template_${index + 1}.txt`
           };
         });
         setTemplates(newTemplates);
@@ -59,7 +59,7 @@ function TemplateSelector({ onSelect }) {
         {Object.entries(templates).map(([templateId, template]) => (
           <div
             key={templateId}
-            className="cursor-pointer border border-gray-300 p-8 w-auto h-[250px] overflow-hidden rounded-sm flex justify-center items-center"
+            className="cursor-pointer border border-gray-300 p-8 w-auto h-[300px] overflow-hidden rounded-sm flex justify-center items-center"
             onClick={() => onSelect(template)}
           >
             <SignaturePreview

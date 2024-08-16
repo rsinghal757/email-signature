@@ -48,7 +48,7 @@ function EditorPage() {
           <div className="w-full max-w-md ml-4 py-6">
             <h2 className="text-base font-semibold mb-6">Preview</h2>
             <div
-              className="cursor-pointer border border-gray-300 p-8 w-auto h-[250px] overflow-hidden rounded-sm flex justify-center items-center"
+              className="cursor-pointer border border-gray-300 p-8 w-auto h-auto overflow-hidden rounded-sm flex justify-center items-center"
             >
               <SignaturePreview
                 template={selectedTemplate}

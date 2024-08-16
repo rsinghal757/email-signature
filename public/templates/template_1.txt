@@ -1,0 +1,24 @@
+<table cellpadding="0" cellspacing="0" border="0" style="font-family: {{fontName}}, Arial, sans-serif; color: {{colorOne}}; background-color: {{colorTwo}}; border-radius: 10px; width: 400px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+  <tr>
+    <td style="padding: 20px; background-image: url('{{bannerURL1}}'); background-size: cover; background-position: center; text-align: center;">
+      <img src="{{photoURL}}" alt="Profile Picture" style="width: 100px; height: 100px; border-radius: 50%; border: 4px solid {{colorTwo}}; margin-bottom: 10px;">
+      <p style="margin: 0; font-size: 20px; font-weight: bold; color: {{colorThree}};">{{firstName}} {{lastName}}</p>
+      <p style="margin: 0; font-size: 16px; color: {{colorThree}};">{{jobTitle}}</p>
+    </td>
+  </tr>
+  <tr>
+    <td style="padding: 20px; background-color: {{colorTwo}}; text-align: left;">
+      <p style="margin: 0; font-size: 14px;">
+        <strong>Phone:</strong> <a href="tel:{{phoneNumber}}" style="color: {{colorOne}}; text-decoration: none;">{{phoneNumber}}</a><br>
+        <strong>Email:</strong> <a href="mailto:{{email}}" style="color: {{colorOne}}; text-decoration: none;">{{email}}</a><br>
+        <strong>Website:</strong> <a href="{{webSite}}" style="color: {{colorOne}}; text-decoration: none;">{{webSite}}</a>
+      </p>
+      <div style="margin-top: 10px; text-align: center;">
+        <a href="{{facebookURL}}" style="margin: 0 5px;"><img src="facebook_icon.png" alt="Facebook" style="width: 25px;"></a>
+        <a href="{{twitterURL}}" style="margin: 0 5px;"><img src="twitter_icon.png" alt="Twitter" style="width: 25px;"></a>
+        <a href="{{linkedinURL}}" style="margin: 0 5px;"><img src="linkedin_icon.png" alt="LinkedIn" style="width: 25px;"></a>
+        <a href="{{githubURL}}" style="margin: 0 5px;"><img src="github_icon.png" alt="GitHub" style="width: 25px;"></a>
+      </div>
+    </td>
+  </tr>
+</table>
