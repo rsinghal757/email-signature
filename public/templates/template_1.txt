@@ -1,24 +1,27 @@
-<table cellpadding="0" cellspacing="0" border="0" style="font-family: {{fontName}}, Arial, sans-serif; color: {{colorOne}}; background-color: {{colorTwo}}; border-radius: 10px; width: 400px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+<table cellpadding="0" cellspacing="0" border="0" width="100%" style="width: 100%; max-width: 560px; border-collapse: collapse; font-family: {{fontName}}, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, 'Helvetica Neue', Helvetica, sans-serif; color: #111827;">
   <tr>
-    <td style="padding: 20px; background-image: url('{{bannerURL1}}'); background-size: cover; background-position: center; text-align: center;">
-      <img src="{{photoURL}}" alt="Profile Picture" style="width: 100px; height: 100px; border-radius: 50%; border: 4px solid {{colorTwo}}; margin-bottom: 10px;">
-      <p style="margin: 0; font-size: 20px; font-weight: bold; color: {{colorThree}};">{{firstName}} {{lastName}}</p>
-      <p style="margin: 0; font-size: 16px; color: {{colorThree}};">{{jobTitle}}</p>
-    </td>
-  </tr>
-  <tr>
-    <td style="padding: 20px; background-color: {{colorTwo}}; text-align: left;">
-      <p style="margin: 0; font-size: 14px;">
-        <strong>Phone:</strong> <a href="tel:{{phoneNumber}}" style="color: {{colorOne}}; text-decoration: none;">{{phoneNumber}}</a><br>
-        <strong>Email:</strong> <a href="mailto:{{email}}" style="color: {{colorOne}}; text-decoration: none;">{{email}}</a><br>
-        <strong>Website:</strong> <a href="{{webSite}}" style="color: {{colorOne}}; text-decoration: none;">{{webSite}}</a>
+    <td style="padding: 20px; border: 1px solid #e5e7eb; border-radius: 12px; background-color: #ffffff;">
+      <table cellpadding="0" cellspacing="0" border="0" width="100%" style="border-collapse: collapse;">
+        <tr>
+          <td width="88" valign="top" style="padding-right: 16px;">
+            <img src="{{photoURL}}" alt="Profile" width="72" height="72" style="display: block; width: 72px; height: 72px; border-radius: 50%; border: 2px solid #d1d5db;">
+          </td>
+          <td valign="top" style="padding: 0;">
+            <p style="margin: 0; font-size: 20px; line-height: 28px; font-weight: 700; color: #111827;">{{firstName}} {{lastName}}</p>
+            <p style="margin: 4px 0 0 0; font-size: 14px; line-height: 20px; color: #4b5563;">{{jobTitle}}</p>
+            <p style="margin: 2px 0 0 0; font-size: 14px; line-height: 20px; color: #6b7280;">{{companyName}}</p>
+            <p style="margin: 12px 0 0 0; font-size: 13px; line-height: 20px;"><a href="mailto:{{email}}" style="color: #1f2937; text-decoration: none;">{{email}}</a></p>
+            <p style="margin: 0; font-size: 13px; line-height: 20px;"><a href="tel:{{phoneNumber}}" style="color: #1f2937; text-decoration: none;">{{phoneNumber}}</a></p>
+            <p style="margin: 0; font-size: 13px; line-height: 20px;"><a href="{{webSite}}" style="color: #1f2937; text-decoration: none;">{{webSite}}</a></p>
+          </td>
+        </tr>
+      </table>
+      <p style="margin: 16px 0 0 0; font-size: 12px; line-height: 18px; color: #6b7280;">
+        <a href="{{linkedinURL}}" style="color: #374151; text-decoration: none; margin-right: 12px;">LinkedIn</a>
+        <a href="{{githubURL}}" style="color: #374151; text-decoration: none; margin-right: 12px;">GitHub</a>
+        <a href="{{twitterURL}}" style="color: #374151; text-decoration: none; margin-right: 12px;">X</a>
+        <a href="{{facebookURL}}" style="color: #374151; text-decoration: none;">Facebook</a>
       </p>
-      <div style="margin-top: 10px; text-align: center;">
-        <a href="{{facebookURL}}" style="margin: 0 5px;"><img src="facebook_icon.png" alt="Facebook" style="width: 25px;"></a>
-        <a href="{{twitterURL}}" style="margin: 0 5px;"><img src="twitter_icon.png" alt="Twitter" style="width: 25px;"></a>
-        <a href="{{linkedinURL}}" style="margin: 0 5px;"><img src="linkedin_icon.png" alt="LinkedIn" style="width: 25px;"></a>
-        <a href="{{githubURL}}" style="margin: 0 5px;"><img src="github_icon.png" alt="GitHub" style="width: 25px;"></a>
-      </div>
     </td>
   </tr>
 </table>
