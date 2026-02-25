@@ -39,7 +39,10 @@ function EditorPage() {
   return (
     <div className="container mx-auto px-4 flex flex-col overflow-hidden">
       {selectedTemplate === null ? (
-        <TemplateSelector onSelect={handleTemplateSelect} />
+        <TemplateSelector
+          onSelect={handleTemplateSelect}
+          selectedTemplateId={selectedTemplate?.id}
+        />
       ) : (
         <div className="container flex justify-between mx-auto gap-24">
           <div className="flex-grow">
@@ -47,14 +50,16 @@ function EditorPage() {
           </div>
           <div className="w-full max-w-md ml-4 py-6">
             <h2 className="text-base font-semibold mb-6">Preview</h2>
-            <div
-              className="cursor-pointer border border-gray-300 p-8 w-auto h-auto overflow-hidden rounded-sm flex justify-center items-center"
-            >
-              <SignaturePreview
-                template={selectedTemplate}
-                formData={formData}
-                onHtmlChange={setSignatureHtml} // Pass the function to capture the HTML
-              />
+            <div className="w-full min-h-[220px] sm:min-h-[250px] aspect-[16/9] p-3 sm:p-5 overflow-hidden rounded-xl border border-slate-200 bg-white text-left shadow-sm flex items-start justify-start">
+              <div className="w-full h-full overflow-hidden rounded-lg border border-slate-100 bg-slate-50/70">
+                <div className="origin-top-left scale-[0.44] sm:scale-[0.5] lg:scale-[0.54]">
+                  <SignaturePreview
+                    template={selectedTemplate}
+                    formData={formData}
+                    onHtmlChange={setSignatureHtml} // Pass the function to capture the HTML
+                  />
+                </div>
+              </div>
             </div>
             <div className="flex flex-col mt-6 justify-center gap-2">
               <CopyButton text={signatureHtml} className="w-full h-full" />
