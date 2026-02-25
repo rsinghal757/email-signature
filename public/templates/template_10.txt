@@ -1,15 +1,20 @@
-<table cellpadding="0" cellspacing="0" border="0" style="font-family: {{fontName}}, Arial, sans-serif;">
+<!-- Classic template -->
+<table cellpadding="0" cellspacing="0" border="0" width="100%" style="width: 100%; max-width: 520px; border-collapse: collapse; font-family: {{fontName}}, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, 'Helvetica Neue', Helvetica, sans-serif; color: #111827;">
   <tr>
-    <td style="background-color: {{colorOne}}; padding: 10px; text-align: center;">
-      <img src="{{photoURL}}" alt="Profile Picture" style="width: 50px; height: 50px; border-radius: 50%;">
-      <p style="margin: 0; color: {{colorTwo}};">{{firstName}} {{lastName}}</p>
-      <p style="margin: 0; color: {{colorTwo}};">{{jobTitle}}</p>
-    </td>
-    <td style="background-color: {{colorThree}}; padding: 10px;">
-      <p style="margin: 0;">{{companyName}}</p>
-      <p style="margin: 0;">
-        <a href="tel:{{phoneNumber}}" style="color: {{colorTwo}}; text-decoration: none;">{{phoneNumber}}</a>
-      </p>
+    <td style="border: 1px solid #e5e7eb; background-color: #ffffff;">
+      <table cellpadding="0" cellspacing="0" border="0" width="100%" style="border-collapse: collapse;">
+        <tr>
+          <td width="32%" align="center" style="padding: 14px; background-color: #f3f4f6;">
+            <img src="{{photoURL}}" alt="Profile" width="48" height="48" style="display: block; width: 48px; height: 48px; border-radius: 50%; margin-bottom: 8px;">
+            <p style="margin: 0; font-size: 13px; line-height: 18px; font-weight: 700;">{{firstName}} {{lastName}}</p>
+          </td>
+          <td width="68%" style="padding: 14px;">
+            <p style="margin: 0; font-size: 14px; line-height: 20px; color: #4b5563;">{{jobTitle}}</p>
+            <p style="margin: 2px 0 0 0; font-size: 13px; line-height: 20px; color: #6b7280;">{{companyName}}</p>
+            <p style="margin: 6px 0 0 0; font-size: 13px; line-height: 20px;"><a href="tel:{{phoneNumber}}" style="color: #1f2937; text-decoration: none;">{{phoneNumber}}</a></p>
+          </td>
+        </tr>
+      </table>
     </td>
   </tr>
 </table>

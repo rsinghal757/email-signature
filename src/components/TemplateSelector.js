@@ -28,6 +28,7 @@ const dummyData = {
 
 function TemplateSelector({ onSelect }) {
   const [templates, setTemplates] = useState({});
+  const [showClassic, setShowClassic] = useState(false);
 
   useEffect(() => {
     const templateCount = 12;
@@ -41,10 +42,14 @@ function TemplateSelector({ onSelect }) {
       .then(htmlContents => {
         const newTemplates = {};
         htmlContents.forEach((htmlContent, index) => {
+          const templateNumber = index + 1;
+          const isClassic = templateNumber > 6;
           newTemplates[`template_${index + 1}`] = {
             id: `template_${index + 1}`,
             htmlContent,
-            fileUrl: `/templates/template_${index + 1}.txt`
+            fileUrl: `/templates/template_${index + 1}.txt`,
+            isClassic,
+            label: isClassic ? `Template ${templateNumber} (Classic)` : `Template ${templateNumber} (Sleek)`
           };
         });
         setTemplates(newTemplates);
@@ -54,14 +59,33 @@ function TemplateSelector({ onSelect }) {
 
   return (
     <div className="container mx-auto px-4 py-6">
-      <h2 className="text-base font-semibold mb-6">Select a template</h2>
+      <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <h2 className="text-base font-semibold">Select a template</h2>
+        <label className="text-sm text-gray-600 inline-flex items-center gap-2">
+          <input
+            type="checkbox"
+            checked={showClassic}
+            onChange={(event) => setShowClassic(event.target.checked)}
+            className="rounded border-gray-300"
+          />
+          Show classic templates (legacy)
+        </label>
+      </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
-        {Object.entries(templates).map(([templateId, template]) => (
+        {Object.entries(templates)
+          .filter(([, template]) => showClassic || !template.isClassic)
+          .map(([templateId, template]) => (
           <div
             key={templateId}
-            className="cursor-pointer border border-gray-300 p-8 w-auto h-[300px] overflow-hidden rounded-sm flex justify-center items-center"
+            className="relative cursor-pointer border border-gray-300 p-8 w-auto h-[300px] overflow-hidden rounded-sm flex justify-center items-center"
             onClick={() => onSelect(template)}
+            title={template.label}
           >
+            {template.isClassic && (
+              <span className="absolute mt-[-250px] text-[10px] uppercase tracking-wide bg-gray-100 text-gray-600 px-2 py-1 rounded">
+                Classic
+              </span>
+            )}
             <SignaturePreview
               template={template}
               formData={dummyData}
