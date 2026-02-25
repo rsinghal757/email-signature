@@ -39,7 +39,10 @@ function EditorPage() {
   return (
     <div className="mx-auto flex w-full max-w-7xl flex-col overflow-hidden px-4 sm:px-6 md:px-12">
       {selectedTemplate === null ? (
-        <TemplateSelector onSelect={handleTemplateSelect} />
+        <TemplateSelector
+          onSelect={handleTemplateSelect}
+          selectedTemplateId={selectedTemplate?.id}
+        />
       ) : (
         <div className="mx-auto flex w-full flex-col gap-8 py-6 xl:flex-row xl:items-start xl:justify-between xl:gap-24">
           <div className="w-full xl:flex-1">
