@@ -16,7 +16,7 @@ function EditorPage() {
     webSite: '',
     addressLine1: '',
     addressLine2: '',
-    photoURl: '',
+    photoURL: '',
     bannerURL1: '',
     bannerURL2: '',
     bannerURL3: '',
