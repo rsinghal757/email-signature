@@ -1,35 +1,31 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Button from '../components/ui/Button';
 
 function Home() {
   return (
-    <div className="min-h-screen w-full pt-6 sm:pt-8 md:pt-10">
-      <div className="mx-auto flex min-h-[calc(100vh-24px)] max-w-7xl flex-col md:min-h-[calc(100vh-40px)] md:flex-row">
-        <div className="flex flex-col justify-center items-start gap-[42px] bg-white px-4 py-8 sm:px-6 md:w-1/2 md:px-12 lg:px-16">
-          <img src="/assets/logo.svg" alt="Email Signature Logo" className="w-auto h-[72px] sm:h-[80px]" />
-          <p className="max-w-[480px] text-[28px] leading-[38px] font-semibold text-[#101010] sm:text-[32px] sm:leading-[42px]">
-            Create professional email signatures for Gmail.
-            <br />
-            For free.
-          </p>
-
-          <Link to="/editor">
-            <button className="bg-[#E43349] text-white px-6 py-3 rounded-lg text-lg font-medium flex items-center justify-center h-[48px] hover:bg-red-600 transition duration-300">
-              Create Signature
-            </button>
-          </Link>
-          <p className="text-sm text-gray-600">
-            No login required. No credit card required.
+    <section className="mx-auto grid min-h-screen max-w-screen-2xl grid-cols-1 overflow-hidden rounded-none bg-white sm:rounded-ui-xl sm:shadow-card lg:grid-cols-2">
+      <div className="order-2 flex flex-col justify-center gap-5 p-5 sm:p-8 lg:order-1 lg:p-12">
+        <img src="/assets/logo.svg" alt="Email Signature Logo" className="h-14 w-auto sm:h-16" />
+        <div className="space-y-3">
+          <h1 className="text-3xl font-semibold leading-tight tracking-tight text-slate-900 sm:text-4xl">
+            Create polished Gmail signatures in minutes.
+          </h1>
+          <p className="max-w-xl text-base text-slate-600 sm:text-lg">
+            Mobile-first editor, modern templates, and copy-ready HTML — no login, no credit card.
           </p>
         </div>
-        <div
-          className="h-64 w-full bg-cover bg-center md:h-auto md:w-1/2"
-          style={{
-            backgroundImage: "url('/assets/hero.png')",
-          }}
-        ></div>
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+          <Link to="/editor" className="w-full sm:w-auto">
+            <Button className="w-full sm:w-auto">Create Signature</Button>
+          </Link>
+          <p className="text-sm text-slate-500">Free forever for personal and business use.</p>
+        </div>
       </div>
-    </div>
+      <div className="order-1 h-[320px] w-full bg-slate-100 lg:order-2 lg:h-auto">
+        <img src="/assets/hero.png" alt="Signature preview" className="h-full w-full object-cover object-center" />
+      </div>
+    </section>
   );
 }
 

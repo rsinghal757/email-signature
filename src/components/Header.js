@@ -1,27 +1,26 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Button from './ui/Button';
 
 function Header() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white">
-      <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-4 sm:px-6 sm:py-5 md:px-12 md:py-6">
-        <Link to="/">
-          <img src="/assets/logo.svg" alt="Email Signature Logo" className="h-[48px] w-auto sm:h-[56px] md:h-[64px]" />
+    <header className="sticky top-0 z-40 border-b border-slate-200/90 bg-white/95 backdrop-blur">
+      <div className="mx-auto flex w-full max-w-screen-2xl items-center justify-between gap-3 px-fluid py-3 sm:py-4">
+        <Link to="/" className="shrink-0">
+          <img src="/assets/logo.svg" alt="Email Signature Logo" className="h-10 w-auto sm:h-12" />
         </Link>
-        <div className="flex items-center gap-2 sm:gap-3 md:gap-5">
-          <span className="hidden text-sm font-medium text-[#101010] text-right md:block">
-            Want to support this tool?
-          </span>
-          <button
+        <div className="min-w-0 text-right">
+          <p className="hidden text-xs text-slate-500 sm:block">Support this free tool</p>
+          <Button
+            variant="secondary"
+            className="mt-0 sm:mt-1"
             onClick={() => window.open('https://buymeacoffee.com/rohitsinghal', '_blank', 'noopener,noreferrer')}
-            className="flex items-center gap-2 rounded-lg border border-gray-200 bg-gray-100 px-3 py-2 font-medium hover:bg-gray-200 sm:gap-3 sm:px-4 sm:py-3"
           >
-            <img src="/assets/buymeacoffeelogo.svg" alt="Buy Me a Coffee" className="h-[20px] w-auto sm:h-[24px]" />
-            <span className="text-sm font-medium text-[#101010] text-center sm:text-base">
-              <span className="sm:hidden">Support</span>
-              <span className="hidden sm:inline">Buy Me A Coffee</span>
+            <span className="inline-flex items-center gap-2">
+              <img src="/assets/buymeacoffeelogo.svg" alt="Buy Me a Coffee" className="h-4 w-auto" />
+              <span className="max-w-[120px] text-wrap">Buy Me A Coffee</span>
             </span>
-          </button>
+          </Button>
         </div>
       </div>
     </header>
