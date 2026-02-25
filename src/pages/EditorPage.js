@@ -37,31 +37,29 @@ function EditorPage() {
   };
 
   return (
-    <div className="container mx-auto px-4 flex flex-col overflow-hidden">
+    <div className="mx-auto flex w-full max-w-7xl flex-col overflow-hidden px-4 sm:px-6 md:px-12">
       {selectedTemplate === null ? (
         <TemplateSelector
           onSelect={handleTemplateSelect}
           selectedTemplateId={selectedTemplate?.id}
         />
       ) : (
-        <div className="container flex justify-between mx-auto gap-24">
-          <div className="flex-grow">
+        <div className="mx-auto flex w-full flex-col gap-8 py-6 xl:flex-row xl:items-start xl:justify-between xl:gap-24">
+          <div className="w-full xl:flex-1">
             <Editor formData={formData} setFormData={setFormData} />
           </div>
-          <div className="w-full max-w-md ml-4 py-6">
-            <h2 className="text-base font-semibold mb-6">Preview</h2>
-            <div className="w-full min-h-[220px] sm:min-h-[250px] aspect-[16/9] p-3 sm:p-5 overflow-hidden rounded-xl border border-slate-200 bg-white text-left shadow-sm flex items-start justify-start">
-              <div className="w-full h-full overflow-hidden rounded-lg border border-slate-100 bg-slate-50/70">
-                <div className="origin-top-left scale-[0.44] sm:scale-[0.5] lg:scale-[0.54]">
-                  <SignaturePreview
-                    template={selectedTemplate}
-                    formData={formData}
-                    onHtmlChange={setSignatureHtml} // Pass the function to capture the HTML
-                  />
-                </div>
-              </div>
+          <div className="w-full max-w-xl py-2 xl:ml-4 xl:max-w-md xl:py-6">
+            <h2 className="mb-6 text-base font-semibold">Preview</h2>
+            <div
+              className="flex h-auto w-auto cursor-pointer items-center justify-center overflow-hidden rounded-sm border border-gray-300 p-6 sm:p-8"
+            >
+              <SignaturePreview
+                template={selectedTemplate}
+                formData={formData}
+                onHtmlChange={setSignatureHtml} // Pass the function to capture the HTML
+              />
             </div>
-            <div className="flex flex-col mt-6 justify-center gap-2">
+            <div className="mt-6 flex flex-col justify-center gap-2">
               <CopyButton text={signatureHtml} className="w-full h-full" />
               {/* <button
                 onClick={() =>
