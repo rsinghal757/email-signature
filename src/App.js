@@ -8,10 +8,10 @@ function App() {
   const location = useLocation();
 
   return (
-    <div className="max-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-white">
       {/* Conditionally render the Header */}
       {location.pathname !== '/' && <Header />}
-      <main className="flex-grow">
+      <main className="flex-grow w-full">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/editor" element={<EditorPage />} />
