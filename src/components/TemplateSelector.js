@@ -1,5 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import SignaturePreview from '../components/SignaturePreview';
+
+const TEMPLATE_COUNT = 12;
+const SLEEK_TEMPLATE_COUNT = 6;
 
 const dummyData = {
   firstName: 'John',
@@ -27,41 +30,79 @@ const dummyData = {
 };
 
 function TemplateSelector({ onSelect, selectedTemplateId = null }) {
-  const [templates, setTemplates] = useState({});
+  const [templates, setTemplates] = useState([]);
   const [showClassic, setShowClassic] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [hasLoadError, setHasLoadError] = useState(false);
 
   useEffect(() => {
-    const templateCount = 12;
-    const templatePromises = [];
+    let isCancelled = false;
 
-    for (let i = 1; i <= templateCount; i++) {
-      templatePromises.push(fetch(`/templates/template_${i}.txt`).then(res => res.text()));
-    }
+    const loadTemplates = async () => {
+      setIsLoading(true);
+      setHasLoadError(false);
 
-    Promise.all(templatePromises)
-      .then(htmlContents => {
-        const newTemplates = {};
-        htmlContents.forEach((htmlContent, index) => {
+      try {
+        const templatePromises = Array.from({ length: TEMPLATE_COUNT }, (_, index) => {
           const templateNumber = index + 1;
-          const isClassic = templateNumber > 6;
-          newTemplates[`template_${index + 1}`] = {
-            id: `template_${index + 1}`,
+          return fetch(`/templates/template_${templateNumber}.txt`).then((response) => {
+            if (!response.ok) {
+              throw new Error(`Failed to fetch template_${templateNumber}.txt`);
+            }
+
+            return response.text();
+          });
+        });
+
+        const htmlContents = await Promise.all(templatePromises);
+        const newTemplates = htmlContents.map((htmlContent, index) => {
+          const templateNumber = index + 1;
+          const isClassic = templateNumber > SLEEK_TEMPLATE_COUNT;
+
+          return {
+            id: `template_${templateNumber}`,
             htmlContent,
-            fileUrl: `/templates/template_${index + 1}.txt`,
+            fileUrl: `/templates/template_${templateNumber}.txt`,
             isClassic,
-            label: isClassic ? `Template ${templateNumber} (Classic)` : `Template ${templateNumber} (Sleek)`
+            label: isClassic ? `Template ${templateNumber} (Classic)` : `Template ${templateNumber} (Sleek)`,
           };
         });
-        setTemplates(newTemplates);
-      })
-      .catch(error => console.error('Error loading templates:', error));
+
+        if (!isCancelled) {
+          setTemplates(newTemplates);
+        }
+      } catch (error) {
+        console.error('Error loading templates:', error);
+        if (!isCancelled) {
+          setHasLoadError(true);
+          setTemplates([]);
+        }
+      } finally {
+        if (!isCancelled) {
+          setIsLoading(false);
+        }
+      }
+    };
+
+    loadTemplates();
+
+    return () => {
+      isCancelled = true;
+    };
   }, []);
+
+  const filteredTemplates = useMemo(
+    () => templates.filter((template) => showClassic || !template.isClassic),
+    [showClassic, templates],
+  );
+
+  const skeletonCount = showClassic ? TEMPLATE_COUNT : SLEEK_TEMPLATE_COUNT;
 
   return (
     <div className="container mx-auto px-4 py-6">
       <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <h2 className="text-base font-semibold">Select a template</h2>
-        <label className="text-sm text-gray-600 inline-flex items-center gap-2">
+        <h2 className="text-base font-semibold text-[#101010]">Select a template</h2>
+        <label className="inline-flex items-center gap-2 text-sm text-gray-600">
           <input
             type="checkbox"
             checked={showClassic}
@@ -71,48 +112,60 @@ function TemplateSelector({ onSelect, selectedTemplateId = null }) {
           Show classic templates (legacy)
         </label>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
-        {Object.entries(templates)
-          .filter(([, template]) => showClassic || !template.isClassic)
-          .map(([templateId, template]) => (
-          <div
-            key={templateId}
-            className="relative cursor-pointer border border-gray-300 p-8 w-auto h-[300px] overflow-hidden rounded-sm flex justify-center items-center"
-      <h2 className="text-base font-semibold mb-6">Select a template</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5">
-        {Object.entries(templates).map(([templateId, template]) => (
-          <button
-            key={templateId}
-            type="button"
-            className={`group w-full min-h-[220px] sm:min-h-[250px] aspect-[16/9] p-3 sm:p-5 overflow-hidden rounded-xl border bg-white text-left shadow-sm transition-all flex items-start justify-start focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2 hover:shadow-md ${
-              selectedTemplateId === templateId
-                ? 'border-sky-500 ring-2 ring-sky-200'
-                : 'border-slate-200 hover:border-slate-300'
-            }`}
-            onClick={() => onSelect(template)}
-            title={template.label}
-          >
-            {template.isClassic && (
-              <span className="absolute mt-[-250px] text-[10px] uppercase tracking-wide bg-gray-100 text-gray-600 px-2 py-1 rounded">
-                Classic
-              </span>
-            )}
-            <SignaturePreview
-              template={template}
-              formData={dummyData}
-            />
-          </div>
-            <div className="w-full h-full overflow-hidden rounded-lg border border-slate-100 bg-slate-50/70">
-              <div className="origin-top-left scale-[0.44] sm:scale-[0.5] lg:scale-[0.54]">
-                <SignaturePreview
-                  template={template}
-                  formData={dummyData}
-                />
-              </div>
+
+      {isLoading ? (
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 sm:gap-5">
+          {Array.from({ length: skeletonCount }).map((_, index) => (
+            <div
+              key={`skeleton-${index + 1}`}
+              className="min-h-[220px] rounded-xl border border-gray-200 bg-white p-4 shadow-sm sm:min-h-[250px]"
+            >
+              <div className="h-full w-full animate-pulse rounded-lg border border-gray-100 bg-slate-100" />
             </div>
-          </button>
-        ))}
-      </div>
+          ))}
+        </div>
+      ) : hasLoadError ? (
+        <div className="rounded-xl border border-red-100 bg-red-50 px-5 py-6 text-sm text-red-700">
+          We couldn&apos;t load templates right now. Please refresh and try again.
+        </div>
+      ) : filteredTemplates.length === 0 ? (
+        <div className="rounded-xl border border-gray-200 bg-gray-50 px-5 py-6 text-sm text-gray-600">
+          No templates are available for this view. Try enabling classic templates.
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 sm:gap-5">
+          {filteredTemplates.map((template) => {
+            const isSelected = selectedTemplateId === template.id;
+
+            return (
+              <button
+                key={template.id}
+                type="button"
+                className={`group relative flex min-h-[220px] w-full flex-col rounded-xl border bg-white p-3 text-left shadow-sm transition-all duration-200 ease-out sm:min-h-[250px] sm:p-4 ${
+                  isSelected
+                    ? 'border-sky-500 shadow-md ring-2 ring-sky-200'
+                    : 'border-gray-200 hover:-translate-y-0.5 hover:border-gray-300 hover:shadow-md active:translate-y-0 active:shadow-sm'
+                } focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2`}
+                onClick={() => onSelect(template)}
+                aria-label={template.label}
+                title={template.label}
+              >
+                {template.isClassic && (
+                  <span className="absolute right-3 top-3 z-10 rounded-full border border-gray-200 bg-white/95 px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide text-gray-600">
+                    Classic
+                  </span>
+                )}
+
+                <div className="h-full w-full overflow-hidden rounded-lg border border-slate-100 bg-slate-50/70">
+                  <div className="origin-top-left scale-[0.44] sm:scale-[0.5] lg:scale-[0.54]">
+                    <SignaturePreview template={template} formData={dummyData} />
+                  </div>
+                </div>
+              </button>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }
