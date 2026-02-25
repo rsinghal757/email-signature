@@ -1,31 +1,33 @@
-## Create Email Signatures for Free
+## Email Signature Generator
 
 ![Email Signature in Gmail](./public/assets/mockup.png)
 
-[EmailSignature](https://emailsignature.in) is a free tool to create HTML signatures for Gmail. HTML email signatures allow you to create professional signatures for free without requiring any know-how of code.
+A mobile-first React app for generating copy-ready HTML signatures for Gmail.
 
-Visit [emailsignature.in](https://emailsignature.in) to start creating your email signature.
+## What changed
 
-## How to Use
+- **Unified design system**: shared UI primitives in `src/components/ui/*` and Tailwind theme tokens for spacing, radius, touch targets, and brand colors.
+- **Template registry architecture**: templates are now registered in `src/templates/registry.js` and rendered via React components in `src/templates/SignatureTemplate.js`.
+- **Single adapter mapping**: form data is normalized in `src/templates/adapter.js` before rendering.
+- **Responsive editor flow**: `/editor` now follows a mobile-first sequence (template selection → form editing → live preview → copy action).
+- **Legacy text templates removed**: old `public/templates/template_*.txt` placeholder files are no longer used.
 
-1. **Select a Template**:
-   - Choose a template that best suits your style and professional needs.
+## Routes
 
-2. **Fill in Your Details**:
-   - Enter your personal and professional information in the form provided.
-   - Customize your signature with your name, job title, contact information, and social media links.
+- `/` - landing page with mobile-first hero layout.
+- `/editor` - responsive template picker + form editor + preview + copy.
 
-3. **Preview Your Signature**:
-   - See a real-time preview of your email signature as you fill in the details.
-   - Make adjustments as needed to perfect your signature.
+## Local development
 
-4. **Copy Your Signature**:
-   - Once you're satisfied with your signature, click the "Copy Signature" button.
-   - The generated HTML will be copied to your clipboard.
+```bash
+npm install
+npm start
+```
 
-5. **Paste in Gmail**:
-   - Follow the tutorial link provided to learn how to paste your signature into Gmail settings.
+## Usage
 
-##
-
-Thank you for using the Email Signature Generator!
+1. Choose a template.
+2. Fill personal/company/styling/social fields.
+3. Review live preview.
+4. Click **Copy Signature**.
+5. In Gmail: **Settings → See all settings → Signature**, create a new signature, and paste.
