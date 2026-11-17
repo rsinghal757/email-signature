@@ -1,32 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Button from '../components/ui/Button';
-
+import SignaturePreview from '../components/SignaturePreview';
+import { TEMPLATE_REGISTRY } from '../templates/registry';
+import { EXAMPLE_FORM_DATA } from '../templates/defaults';
 function Home() {
-  return (
-    <section className="mx-auto grid min-h-screen max-w-screen-2xl grid-cols-1 overflow-hidden rounded-none bg-white sm:rounded-ui-xl sm:shadow-card lg:grid-cols-2">
-      <div className="order-2 flex flex-col justify-center gap-5 p-5 sm:p-8 lg:order-1 lg:p-12">
-        <img src="/assets/logo.svg" alt="Email Signature Logo" className="h-14 w-auto sm:h-16" />
-        <div className="space-y-3">
-          <h1 className="text-3xl font-semibold leading-tight tracking-tight text-slate-900 sm:text-4xl">
-            Create polished Gmail signatures in minutes.
-          </h1>
-          <p className="max-w-xl text-base text-slate-600 sm:text-lg">
-            Mobile-first editor, modern templates, and copy-ready HTML — no login, no credit card.
-          </p>
-        </div>
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-          <Link to="/editor" className="w-full sm:w-auto">
-            <Button className="w-full sm:w-auto">Create Signature</Button>
-          </Link>
-          <p className="text-sm text-slate-500">Free forever for personal and business use.</p>
-        </div>
-      </div>
-      <div className="order-1 h-[320px] w-full bg-slate-100 lg:order-2 lg:h-auto">
-        <img src="/assets/hero.png" alt="Signature preview" className="h-full w-full object-cover object-center" />
-      </div>
-    </section>
-  );
+  return <div className="landing"><header className="landing-header"><Link to="/" className="wordmark"><span className="wordmark-icon">✳</span><span>email<span className="wordmark-light">signature</span><small>THE SIGNATURE BUILDER</small></span></Link><a className="support-link" href="https://buymeacoffee.com/rohitsinghal" target="_blank" rel="noopener noreferrer">Support this project ↗</a></header>
+    <main className="hero"><div className="hero-copy"><span className="eyebrow">A little detail, beautifully done</span><h1>Leave a good<br /><em>last impression.</em></h1><p>A thoughtful email signature, made in minutes. Choose a design, add your details, and make every sign-off feel like you.</p><Link className="hero-button" to="/editor">Create your signature <span>↗</span></Link><div className="hero-note"><span>✳</span> Free to use. No account needed.</div></div>
+    <div className="hero-visual"><div className="hero-card"><div className="email-context"><span>New message</span><span>•••</span></div><div className="hero-letter"><p>Hi there,</p><p>It was lovely connecting with you.<br />Looking forward to what comes next.</p><p>Best,</p><SignaturePreview template={TEMPLATE_REGISTRY[0]} formData={EXAMPLE_FORM_DATA} /></div></div><div className="hero-tag">A better way to sign off <span>✳</span></div></div></main>
+    <footer className="landing-footer"><span>Made for the emails that matter.</span><span>YOUR NEXT SIGN-OFF STARTS HERE ↗</span></footer></div>;
 }
-
 export default Home;
