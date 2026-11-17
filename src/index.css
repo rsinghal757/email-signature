@@ -2,14 +2,83 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  body {
-    @apply bg-slate-50 text-slate-900 antialiased;
-  }
-}
-
-@layer components {
-  .px-fluid {
-    @apply px-4 sm:px-6 lg:px-8;
-  }
-}
+:root { color: #23312d; background: #f5f5ef; font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+body { margin: 0; -webkit-font-smoothing: antialiased; }
+button, input { font: inherit; }
+button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid #76aa94; outline-offset: 3px; }
+.app-shell { min-height: 100vh; }
+.site-header { background: #f5f5ef; border-bottom: 1px solid #dfe4dc; }
+.header-inner, .landing-header { max-width: 1440px; margin: auto; padding: 22px clamp(24px,5vw,80px); display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+.wordmark { display: inline-flex; align-items: center; gap: 10px; color: #253b33; font-size: 20px; font-weight: 750; letter-spacing: -.06em; line-height: 1; text-decoration: none; }
+.wordmark-icon { display: grid; place-items: center; color: #f5f5ef; background: #315e4d; width: 36px; height: 36px; border-radius: 50%; font-size: 22px; letter-spacing: 0; }
+.wordmark-light { font-weight: 400; }
+.wordmark small { display: block; font-size: 8px; letter-spacing: .15em; margin-top: 5px; font-weight: 700; }
+.support-link { font-size: 12px; font-weight: 600; color: #53645c; text-decoration: none; }
+.support-link:hover, .back-link:hover { color: #347b60; }
+.workspace { max-width: 1440px; margin: 0 auto; padding: 0 clamp(24px,5vw,80px) 80px; }
+.page-intro { padding: 66px 0 38px; }
+.eyebrow { color: #6b8477; font-size: 10px; font-weight: 750; letter-spacing: .16em; text-transform: uppercase; }
+.page-intro h1, .hero h1 { font-family: Georgia, 'Times New Roman', serif; font-weight: 400; letter-spacing: -.045em; color: #263b33; }
+.page-intro h1 { font-size: clamp(38px,4vw,56px); line-height: 1.1; margin: 14px 0 10px; }
+.page-intro p { color: #718079; font-size: 15px; }
+.template-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 26px; }
+.template-card { text-align: left; min-width: 0; background: #fff; border: 1px solid #e1e6de; border-radius: 6px; overflow: hidden; transition: transform .2s, box-shadow .2s, border-color .2s; }
+.template-card:hover { transform: translateY(-4px); border-color: #9eb8a7; box-shadow: 0 16px 32px rgba(40,70,55,.09); }
+.template-paper { height: 220px; padding: 42px 30px; background: #fff; display: flex; align-items: center; overflow: hidden; }
+.signature-compact { width: 100%; pointer-events: none; }
+.template-caption { display: flex; align-items: center; justify-content: space-between; gap: 12px; background: #fafbf8; border-top: 1px solid #edf0ea; padding: 20px 22px; }
+.template-caption strong { font-size: 14px; font-weight: 650; }
+.template-caption p { color: #849188; font-size: 12px; margin: 5px 0 0; }
+.template-number { color: #9bad9e; font-size: 11px; }
+.template-arrow { color: #56846e; font-size: 19px; }
+.editor-page { padding-top: 34px; }
+.back-link { background: transparent; border: 0; padding: 0; color: #6b8073; font-size: 13px; font-weight: 600; cursor: pointer; }
+.editor-intro { padding: 38px 0; }
+.editor-layout { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.05fr); gap: 28px; align-items: start; }
+.editor-panel, .preview-panel { background: #fff; border: 1px solid #e1e6de; border-radius: 8px; padding: 28px; box-shadow: 0 10px 30px rgba(42,65,49,.035); }
+.preview-panel { position: sticky; top: 24px; }
+.panel-heading { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+.panel-heading h2 { font-family: Georgia, serif; font-size: 25px; font-weight: 400; color: #263b33; margin: 5px 0 0; }
+.panel-step { color: #a5b2a8; font-size: 11px; letter-spacing: .1em; }
+.editor-tabs { display: flex; overflow-x: auto; gap: 4px; padding-bottom: 0; border-bottom: 1px solid #e9ede7; }
+.editor-tabs button { flex: 0 0 auto; padding: 12px 13px; border: 0; border-bottom: 2px solid transparent; color: #849188; font-size: 12px; font-weight: 600; cursor: pointer; background: transparent; }
+.editor-tabs button.active { color: #315e4d; border-bottom-color: #4c866b; }
+.form-area { padding-top: 26px; }
+.form-area h3 { font-size: 15px; font-weight: 700; color: #31433a; margin: 0; }
+.form-description { color: #8b978e; font-size: 12px; margin: 6px 0 22px; }
+.form-area input { border-radius: 5px; border-color: #dfe6df; background: #fbfcfa; }
+.form-area input:focus { border-color: #70a48a; --tw-ring-color: #dceee3; }
+.form-area label { font-size: 12px; color: #4d6256; }
+.preview-status { color: #658572; font-size: 11px; font-weight: 650; background: #eff6ef; padding: 7px 10px; border-radius: 30px; }
+.preview-status span { display: inline-block; width: 6px; height: 6px; background: #74a987; border-radius: 50%; margin-right: 5px; vertical-align: middle; }
+.preview-paper { border: 1px solid #e6ebe4; border-radius: 6px; overflow: hidden; margin-bottom: 22px; }
+.email-context { display: flex; justify-content: space-between; color: #96a49a; font-size: 11px; font-weight: 600; padding: 14px 18px; border-bottom: 1px solid #edf0eb; }
+.email-lines { padding: 28px 24px 0; }
+.email-lines span { display: block; height: 5px; width: 52%; background: #f0f3ee; border-radius: 8px; margin-bottom: 10px; }
+.email-lines span:last-child { width: 35%; }
+.signature-stage { min-height: 235px; padding: 30px 24px; overflow-x: auto; }
+.signature-content { min-width: 240px; }
+.preview-panel > button { width: 100%; background: #315e4d; border-radius: 5px; min-height: 48px; }
+.preview-panel > button:hover { background: #244a3b; }
+.paste-help { margin: 15px 0 0; color: #839187; font-size: 12px; line-height: 1.65; }
+.landing { min-height: 100vh; display: flex; flex-direction: column; }
+.landing-header { width: 100%; }
+.hero { max-width: 1440px; width: 100%; margin: auto; padding: 72px clamp(24px,5vw,80px) 100px; display: grid; grid-template-columns: 1fr 1fr; gap: 8%; align-items: center; }
+.hero h1 { font-size: clamp(52px,6.4vw,94px); line-height: 1.02; margin: 20px 0 24px; }
+.hero h1 em { color: #749c83; font-weight: 400; }
+.hero-copy > p { color: #76867c; line-height: 1.8; max-width: 430px; font-size: 16px; }
+.hero-button { display: inline-flex; align-items: center; gap: 42px; margin-top: 32px; padding: 17px 21px; color: white; background: #315e4d; border-radius: 5px; font-size: 13px; font-weight: 650; text-decoration: none; transition: background .2s; }
+.hero-button:hover { background: #244a3b; }
+.hero-note { color: #8b9a8f; margin-top: 20px; font-size: 12px; }
+.hero-note span { color: #79a98b; margin-right: 7px; }
+.hero-visual { background: #dce8dd; padding: 55px; position: relative; border-radius: 50% 50% 5px 5px; }
+.hero-card { background: white; border: 1px solid #e0e8e0; border-radius: 6px; box-shadow: 0 25px 60px rgba(48,82,61,.12); overflow: hidden; }
+.hero-letter { padding: 32px; color: #7d8c83; font-size: 13px; line-height: 1.7; }
+.hero-letter p { margin: 0 0 18px; }
+.hero-letter .signature-content { margin-top: 30px; }
+.hero-tag { position: absolute; bottom: 25px; right: -20px; padding: 12px 16px; background: #f7f9f4; color: #587966; font-size: 10px; letter-spacing: .06em; box-shadow: 0 8px 25px #315e4d15; }
+.hero-tag span { margin-left: 12px; }
+.landing-footer { border-top: 1px solid #dfe4dc; padding: 22px clamp(24px,5vw,80px); display: flex; justify-content: space-between; gap: 20px; color: #94a197; font-size: 11px; }
+.landing-footer span:last-child { letter-spacing: .1em; font-size: 9px; }
+@media (max-width: 950px) { .template-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } .editor-layout { grid-template-columns: 1fr; } .preview-panel { position: static; } .hero { gap: 35px; } .hero-visual { padding: 30px; } }
+@media (max-width: 640px) { .header-inner, .landing-header { padding-top: 18px; padding-bottom: 18px; } .support-link { font-size: 11px; } .template-grid { grid-template-columns: 1fr; gap: 16px; } .template-paper { height: 200px; } .page-intro { padding: 44px 0 28px; } .editor-intro { padding: 30px 0; } .editor-panel, .preview-panel { padding: 20px; } .hero { grid-template-columns: 1fr; padding-top: 55px; padding-bottom: 60px; } .hero h1 { font-size: 52px; } .hero-visual { margin: 25px 12px 0 0; } .hero-letter { padding: 24px; } .landing-footer span:last-child { display: none; } }
